@@ -1,22 +1,43 @@
 import Fastify from 'fastify';
+import ejs from 'ejs';
+import fastifyView from '@fastify/view';
 
 import operatingHours from "./data/operatingHours.js";
 import menuItems from "./data/menuItems.js";
+import fastify from "fastify";
+import * as repl from "node:repl";
 
 const app = Fastify();
 const port = 3000;
 
-app.get('/',  async (req, res) => {
-    return "Welcome to What's Fare is Fair!";
+app.register(fastifyView, {
+    engine: {
+        ejs: ejs,
+    },
 });
 
-app.get('/menu', async (req, res) => {
-    res.send(menuItems);
+app.get("/", (req, reply) => {
+    reply.view("views/index.ejs", { name: "What's Fare is Fair" });
 });
 
-app.get('/hours', async (req, res) => {
-    res.send(operatingHours);
+app.get("/menu", (req, reply) => {
+    reply.view("views/menu.ejs", { menuItems });
 })
 
-await app.listen({ port });
-console.log(`Web server is listening at http://localhost:${port}!`);
+app.get("/hours", (req, reply) => {
+    const days = [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+    ];
+    reply.view("views/hours.ejs", { operatingHours, days });
+})
+
+app.listen( { port: port }, (err, address) => {
+    if (err) throw err;
+    console.log(`Server started on port ${port}`);
+})

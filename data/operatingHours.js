@@ -1,14 +1,14 @@
 export default {
     defaultHours: {
         open: 11,
-        close: 22,
+        closed: 22,
     },
     monday: {
         open: null,
-        close: null,
+        closed: null,
     },
     sunday: {
         open: 12,
-        close: 20,
+        closed: 20,
     },
 };
