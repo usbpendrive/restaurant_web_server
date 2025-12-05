@@ -1,0 +1,20 @@
+{
+  "name": "restaurant_web_server",
+  "version": "1.0.0",
+  "description": "An web application for a local restaurant.",
+  "homepage": "https://github.com/usbpendrive/restaurant_web_server#readme",
+  "bugs": {
+    "url": "https://github.com/usbpendrive/restaurant_web_server/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/usbpendrive/restaurant_web_server.git"
+  },
+  "license": "MIT",
+  "author": "usbpendrive",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
